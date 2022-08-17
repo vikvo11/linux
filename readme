@@ -1,0 +1,9 @@
+OpenSSH>>
+ssh_keygen
+
+
+du -h <dir> 2>/dev/null | grep '[0-9\.]\+G'
+
+du -h ./ 2>/dev/null | grep '[0-9\.]\+G'
+
+du -a -h /root | sort -n -r | head -n 5
