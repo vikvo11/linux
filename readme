@@ -7,3 +7,15 @@ du -h <dir> 2>/dev/null | grep '[0-9\.]\+G'
 du -h ./ 2>/dev/null | grep '[0-9\.]\+G'
 
 du -a -h /root | sort -n -r | head -n 5
+
+
+#### AWK
+#I used awk to put ip addresses in an associate array named "i", using the match as the index. I then print the indexes, which de-duplicates the data.
+awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/) {i[substr($0,RSTART,RLENGTH)]=1}END{for(ip in i){printf("%s\n", ip)}}' access.log
+
+
+echo 'A:\ B:\ C:\ D:\' | awk -F'[:\\\\]' '{print $1}'
+echo 'A:\ B:\ C:\ D:\' | awk -F ':\\\\' -v OFS=- '{print $1,$2,$3,$4,$5}'
+
+awk -F'- -' '{print $1,$2,$3,$4,$5}' access.log
+awk -F' ' '{print $1,$2,$3,$4,$5}' access.log
